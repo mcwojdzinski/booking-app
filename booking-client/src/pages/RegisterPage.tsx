@@ -7,8 +7,7 @@ const RegisterPage = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    async function registerUser(ev: FormEvent<HTMLFormElement>): Promise<void> {
-
+    const registerUser = async (ev: FormEvent<HTMLFormElement>): Promise<void> => {
         ev.preventDefault();
         try {
             await axios.post('/register', {

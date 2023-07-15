@@ -3,3 +3,7 @@
 ## node_modules from packages
 booking-api/node_modules
 booking-client/node_modules
+
+## env files
+
+booking-api/.env

@@ -1,6 +1,10 @@
 import {Link} from 'react-router-dom'
+import {useContext} from "react";
+import {UserContext} from "../UserContext.tsx";
 
 const Header = () => {
+
+    const {user} = useContext(UserContext)
     return (
         <header className="flex justify-between">
             <Link to="/" className="flex items-center gap-2">
@@ -45,7 +49,7 @@ const Header = () => {
                 </button>
             </div>
             <Link
-                to="/login"
+                to={user ? '/account' : '/login'}
                 className="flex border border-gray-300 rounded-full px-2 gap-x-1 shadow-md shadow-gray-300 items-center"
             >
                 <svg
@@ -79,6 +83,7 @@ const Header = () => {
                     </svg>
                 </div>
             </Link>
+            {!!user && (<div>{user.name}</div>)}
         </header>
     )
 }
