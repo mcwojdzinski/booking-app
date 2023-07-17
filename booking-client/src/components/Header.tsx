@@ -5,6 +5,7 @@ import {UserContext} from "../UserContext.tsx";
 const Header = () => {
 
     const {user} = useContext(UserContext)
+    console.log(user)
     return (
         <header className="flex justify-between">
             <Link to="/" className="flex items-center gap-2">
@@ -82,8 +83,8 @@ const Header = () => {
                         />
                     </svg>
                 </div>
+                {!!user && (<div>{user.name}</div>)}
             </Link>
-            {!!user && (<div>{user.name}</div>)}
         </header>
     )
 }

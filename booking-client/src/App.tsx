@@ -10,6 +10,7 @@ import IndexPage from './pages/IndexPage.tsx'
 import LoginPage from './pages/LoginPage.tsx'
 import axios from "axios";
 import {UserContextProvider} from "./UserContext.tsx";
+import AccountPage from "./pages/AccountPage.tsx";
 
 axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.withCredentials = true
@@ -22,6 +23,7 @@ function App() {
                     <Route index element={<IndexPage/>}/>
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
+                    <Route path="/account/:subpage?" element={<AccountPage/>}/>
                 </Route>
             </Routes>
         </UserContextProvider>
