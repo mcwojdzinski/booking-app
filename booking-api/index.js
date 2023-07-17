@@ -16,7 +16,7 @@ app.use(express.json()); // Middleware to parse JSON data
 app.use(cookieParser())
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:5173'
+    origin: 'http://127.0.0.1:5173'
 }))
 
 mongoose.connect(process.env.MONGODB_URL)
@@ -60,7 +60,6 @@ app.post('/login', async (req, res) => {
 })
 
 app.get('/profile', (req, res) => {
-    mongoose.connect(process.env.MONGO_URL);
     const {token} = req.cookies;
     if (token) {
         jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -71,6 +70,10 @@ app.get('/profile', (req, res) => {
     } else {
         res.json(null);
     }
+})
+
+app.post('/logout', (req, res) => {
+    res.cookie('token', '').json(true);
 })
 
 app.listen(4000, () => {
