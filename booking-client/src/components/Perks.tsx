@@ -1,8 +1,20 @@
-const Perks = ({ selected, onChange }) => {
+import {FormEvent} from "react";
+
+const Perks = ({selected, onChange}) => {
+    const handleCbClick = (ev: FormEvent<HTMLInputElement>) => {
+        const {checked, name} = ev.target;
+        if (checked) {
+            onChange([...selected, name])
+        } else {
+            onChange([...selected.filter(selectedName => selectedName !== name)])
+        }
+    }
+
     return (
         <>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
-                <input type="checkbox" />
+            <label
+                className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
+                <input type="checkbox" name="wifi" onChange={handleCbClick}/>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -19,8 +31,9 @@ const Perks = ({ selected, onChange }) => {
                 </svg>
                 <span>Wifi</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
-                <input type="checkbox" />
+            <label
+                className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
+                <input type="checkbox" name="parking" onChange={handleCbClick}/>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -37,8 +50,9 @@ const Perks = ({ selected, onChange }) => {
                 </svg>
                 <span>Free parking spot</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
-                <input type="checkbox" />
+            <label
+                className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
+                <input type="checkbox" name="tv" onChange={handleCbClick}/>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -55,8 +69,9 @@ const Perks = ({ selected, onChange }) => {
                 </svg>
                 <span>TV</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
-                <input type="checkbox" />
+            <label
+                className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
+                <input type="checkbox" name="radio" onChange={handleCbClick}/>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -73,8 +88,9 @@ const Perks = ({ selected, onChange }) => {
                 </svg>
                 <span>Radio</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
-                <input type="checkbox" />
+            <label
+                className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
+                <input type="checkbox" name="pets" onChange={handleCbClick}/>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -91,8 +107,9 @@ const Perks = ({ selected, onChange }) => {
                 </svg>
                 <span>Pets</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
-                <input type="checkbox" />
+            <label
+                className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-gray-200 transition">
+                <input type="checkbox" name="entrance" onChange={handleCbClick}/>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
