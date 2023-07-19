@@ -7,3 +7,4 @@ booking-client/node_modules
 ## env files
 
 booking-api/.env
+booking-api/uploads
