@@ -1,5 +1,5 @@
 import {Link, useParams} from 'react-router-dom'
-import {FormEvent, useState} from 'react'
+import {ChangeEvent, FormEvent, useState} from 'react'
 import Perks from '../components/Perks.tsx'
 import axios from "axios";
 
@@ -40,6 +40,26 @@ const PlacesPage = () => {
             return [...prev, filename]
         })
         setPhotoLink('')
+    }
+
+    const uploadPhoto = (ev: ChangeEvent<HTMLInputElement>) => {
+        const files: FileList = ev.target.files;
+        const data: FormData = new FormData()
+
+        for (let i = 0; i < files.length; i++) {
+            data.append('photos', files[i])
+        }
+
+        axios.post('/upload', data, {
+            headers: {'Content-type': 'multipart/form-data'}
+        }).then(response => {
+            const {data: filenames} = response
+            setAddedPhotos(prev => {
+                return [...prev, ...filenames]
+            })
+        }).catch(err => {
+            throw new err;
+        })
     }
 
     return (
@@ -103,13 +123,14 @@ const PlacesPage = () => {
                         </div>
                         <div className="mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                             {addedPhotos.length > 0 && addedPhotos.map(link => (
-                                <div>
+                                <div className="h-32 flex">
                                     <img src={`http://localhost:4000/uploads/${link}`} alt="Place image"
-                                         className="rounded-2xl"/>
+                                         className="rounded-2xl w-full object-cover "/>
                                 </div>
                             ))}
-                            <button
-                                className="flex gap-1 justify-center items-center border bg-transparent rounded-2xl p-8 text-2xl text-gray-600">
+                            <label
+                                className="h-32 cursor-pointer flex gap-1 justify-center items-center border bg-transparent rounded-2xl p-8 text-2xl text-gray-600">
+                                <input type="file" multiple className="hidden" onChange={uploadPhoto}/>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -125,7 +146,7 @@ const PlacesPage = () => {
                                     />
                                 </svg>
                                 Upload
-                            </button>
+                            </label>
                         </div>
                         {preInput('Description', 'description of the place')}
                         <textarea
