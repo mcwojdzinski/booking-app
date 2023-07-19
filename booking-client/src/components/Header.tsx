@@ -1,10 +1,9 @@
-import {Link} from 'react-router-dom'
-import {useContext} from "react";
-import {UserContext} from "../UserContext.tsx";
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '../UserContext.tsx'
 
 const Header = () => {
-
-    const {user} = useContext(UserContext)
+    const { user } = useContext(UserContext)
     console.log(user)
     return (
         <header className="flex justify-between">
@@ -25,8 +24,7 @@ const Header = () => {
                 </svg>
                 <span className="font-bold text-2xl">Book-app</span>
             </Link>
-            <div
-                className="flex border border-gray-300 rounded-full py-2 px-4 gap-x-2 shadow-md shadow-gray-300 items-center">
+            <div className="flex border border-gray-300 rounded-full py-2 px-4 gap-x-2 shadow-md shadow-gray-300 items-center">
                 <div>Anywhere</div>
                 <div className="border-l h-full border-gray-300"></div>
                 <div>Any week</div>
@@ -83,7 +81,7 @@ const Header = () => {
                         />
                     </svg>
                 </div>
-                {!!user && (<div>{user.name}</div>)}
+                {!!user && <div>{user.name}</div>}
             </Link>
         </header>
     )

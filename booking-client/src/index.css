@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
     margin: 0;
     padding: 0;
@@ -12,14 +11,18 @@
     font-family: 'Poppins', sans-serif;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+textarea {
     @apply w-full border my-2 py-2 px-3 rounded-2xl;
 }
 
 button {
-    @apply bg-gray-300
+    @apply bg-gray-300;
 }
 
 button.primary {
-    @apply bg-primary py-3 rounded-2xl text-white p-2
+    @apply bg-primary py-3 rounded-2xl text-white p-2;
 }
