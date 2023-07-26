@@ -12,9 +12,9 @@ const PlacesPage = () => {
         })
     }, [])
     return (
-        <div>
+        <div className="flex flex-col items-center">
             <AccountNav/>
-            <div className="text-center">
+            <div className="text-center w-10/12 ">
                 <Link
                     className="inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full text-center"
                     to={'/account/places/new'}
@@ -35,11 +35,11 @@ const PlacesPage = () => {
                     </svg>
                     Add new place
                 </Link>
-                <div className="mt-4">
+                <div className="mt-4 w-full">
                     {places.length > 0 &&
                         places.map((place: any) => (
                             <Link to={`/account/places/${place._id}`}
-                                  className="bg-gray-100 gap-4 p-4 rounded-2xl flex cursor-pointer">
+                                  className="bg-gray-100 my-4  p-4 rounded-2xl flex cursor-pointer">
                                 <div className="flex w-32 h-32 bg-gray-300 shrink-0">
                                     {place.photos.length && (
                                         <img

@@ -85,7 +85,7 @@ const PlacesFormPage = () => {
     return (
         <div className="flex flex-col justify-center items-center">
             <AccountNav/>
-            <form className="w-full" onSubmit={savePlace}>
+            <form className="w-10/12" onSubmit={savePlace}>
                 {preInput(
                     'Title',
                     'Title for your place. Should be short and catchy'
@@ -154,7 +154,7 @@ const PlacesFormPage = () => {
                         />
                     </div>
 
-                    <button className="primary my-4">Save</button>
+                    <button className="primary col-start-2 my-4">Save</button>
                 </div>
             </form>
         </div>
