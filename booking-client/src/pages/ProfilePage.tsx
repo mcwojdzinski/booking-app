@@ -1,18 +1,18 @@
-import {useContext, useState} from 'react'
-import {UserContext} from '../UserContext.tsx'
-import {Link, Navigate, useParams} from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { UserContext } from '../UserContext.tsx'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import PlacesPage from './PlacesPage.tsx'
-import AccountNav from "../AccountNav.tsx";
+import AccountNav from '../AccountNav.tsx'
 
-const AccountPage = () => {
+const ProfilePage = () => {
     const [redirect, setRedirect] = useState<string | null>(null)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const {user, ready, setUser}: { user: any; ready: boolean } =
+    const { user, ready, setUser }: { user: any; ready: boolean } =
         useContext(UserContext)
 
-    let {subpage} = useParams()
+    let { subpage } = useParams()
     if (subpage === undefined) {
         subpage = 'profile'
     }
@@ -22,7 +22,7 @@ const AccountPage = () => {
     }
 
     if (ready && !user && !redirect) {
-        return <Navigate to={'/login'}/>
+        return <Navigate to={'/login'} />
     }
 
     const logout = async () => {
@@ -32,12 +32,12 @@ const AccountPage = () => {
     }
 
     if (redirect) {
-        return <Navigate to={redirect}/>
+        return <Navigate to={redirect} />
     }
 
     return (
         <div>
-            <AccountNav/>
+            <AccountNav />
             {subpage === 'profile' && (
                 <div className="text-center max-w-lg mx-auto flex flex-col justify-center">
                     Logged in as {user.name} ({user.email})
@@ -47,9 +47,9 @@ const AccountPage = () => {
                 </div>
             )}
 
-            {subpage === 'places' && <PlacesPage/>}
+            {subpage === 'places' && <PlacesPage />}
         </div>
     )
 }
 
-export default AccountPage
+export default ProfilePage
