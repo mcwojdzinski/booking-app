@@ -2,10 +2,11 @@ import {useParams} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 import BookingWidget from '../components/BookingWidget.tsx'
+import {PlaceInterface} from "../interface/Place.ts";
 
 const PlacePage = () => {
     const {id} = useParams()
-    const [place, setPlace] = useState(null)
+    const [place, setPlace] = useState<PlaceInterface>(null)
     const [showAllPhotos, setShowAllPhotos] = useState(false)
     useEffect(() => {
         if (!id) return
@@ -153,7 +154,7 @@ const PlacePage = () => {
                 </button>
             </div>
 
-            <div className="mt-8 gap-8 grid grid-cols-1 mb-8 md:grid-cols-[2fr_1fr]">
+            <div className="mt-8 gap-8 grid grid-cols-1 mb-8 px-4 md:grid-cols-[2fr_1fr]">
                 <div>
                     <div className="my-4">
                         <h2 className="font-semibold text-2xl">Description</h2>
@@ -173,9 +174,7 @@ const PlacePage = () => {
                     <h2 className="font-semibold text-2xl">Extra info</h2>
                 </div>
                 <div className="text-sm text-gray-700 leading-5 my-4">{place.extraInfo}</div>
-
             </div>
-
         </div>
     )
 }

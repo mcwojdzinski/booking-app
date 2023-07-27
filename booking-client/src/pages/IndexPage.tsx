@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import {PlaceInterface} from "../interface/Place.ts";
 
 const IndexPage = () => {
-    const [places, setPlaces] = useState([])
+    const [places, setPlaces] = useState<PlaceInterface[]>([])
 
     useEffect(() => {
         axios
