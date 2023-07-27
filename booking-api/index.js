@@ -30,6 +30,15 @@ app.get('/test', (req, res) => {
     res.json({message: 'Test response'});
 });
 
+const getUserDataFromReq = (req) => {
+    return new Promise((resolve, reject) => {
+        jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+            if (err) throw err;
+            resolve(userData)
+        })
+    })
+}
+
 app.post('/register', async (req, res) => {
     const {name, email, password} = req.body
 
@@ -165,14 +174,23 @@ app.get('/places', async (req, res) => {
     res.json(await Place.find())
 })
 
-app.post('/booking', async (req, res) => {
+app.post('/bookings', async (req, res) => {
+
+    const userData = await getUserDataFromReq(req)
+
     const {place, checkIn, checkOut, numberOfGuests, name, phone, price} = req.body
 
     const bookingCreated = await Booking.create({
-        place, checkIn, checkOut, numberOfGuests, name, phone, price
+        place, checkIn, checkOut, numberOfGuests, name, phone, price, user: userData.id
     })
 
     res.json(bookingCreated)
+})
+
+
+app.get('/bookings', async (req, res) => {
+    const userData = await getUserDataFromReq(req)
+    res.json(await Booking.find({user: userData.id}).populate('place'))
 })
 
 app.listen(4000, () => {
