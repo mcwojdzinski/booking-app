@@ -6,7 +6,7 @@ const Header = () => {
     const { user } = useContext(UserContext)
     console.log(user)
     return (
-        <header className="flex justify-between">
+        <header className="flex justify-between w-full">
             <Link to="/" className="flex items-center gap-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

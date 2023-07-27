@@ -3,7 +3,7 @@ import { UserContext } from '../UserContext.tsx'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import PlacesPage from './PlacesPage.tsx'
-import AccountNav from '../AccountNav.tsx'
+import AccountNav from '../components/AccountNav.tsx'
 
 const ProfilePage = () => {
     const [redirect, setRedirect] = useState<string | null>(null)

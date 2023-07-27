@@ -28,5 +28,5 @@ button {
 }
 
 button.primary {
-    @apply bg-primary py-3 rounded-2xl text-white p-2;
+    @apply bg-primary py-3 rounded-2xl text-white p-2 w-full;
 }

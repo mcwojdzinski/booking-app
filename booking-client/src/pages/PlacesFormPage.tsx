@@ -1,12 +1,12 @@
 import PhotosUploader from '../components/PhotosUploader.tsx'
 import Perks from '../components/Perks.tsx'
-import {FormEvent, useEffect, useState} from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import axios from 'axios'
-import AccountNav from '../AccountNav.tsx'
-import {Navigate, useParams} from 'react-router-dom'
+import AccountNav from '../components/AccountNav.tsx'
+import { Navigate, useParams } from 'react-router-dom'
 
 const PlacesFormPage = () => {
-    const {id} = useParams()
+    const { id } = useParams()
     console.log(id)
     const [title, setTitle] = useState<string>('')
     const [address, setAddress] = useState<string>('')
@@ -22,25 +22,27 @@ const PlacesFormPage = () => {
 
     useEffect(() => {
         if (!id) {
-            return;
+            return
         }
 
-        axios.get(`/places/${id}`).then(response => {
-            const {data} = response;
-            setTitle(data.title);
-            setAddress(data.address);
-            setAddedPhotos(data.photos);
-            setDescription(data.description);
-            setPerks(data.perks);
-            setExtraInfo(data.extraInfo);
-            setCheckIn(data.checkIn);
-            setCheckOut(data.checkOut);
-            setMaxGuests(data.maxGuests);
-            setPrice(data.price)
-
-        }).catch(err => {
-            throw err
-        })
+        axios
+            .get(`/places/${id}`)
+            .then((response) => {
+                const { data } = response
+                setTitle(data.title)
+                setAddress(data.address)
+                setAddedPhotos(data.photos)
+                setDescription(data.description)
+                setPerks(data.perks)
+                setExtraInfo(data.extraInfo)
+                setCheckIn(data.checkIn)
+                setCheckOut(data.checkOut)
+                setMaxGuests(data.maxGuests)
+                setPrice(data.price)
+            })
+            .catch((err) => {
+                throw err
+            })
     }, [id])
     const inputHeader = (inputTitle: string) => {
         return <h2 className="text-xl mt-4">{inputTitle}</h2>
@@ -70,10 +72,10 @@ const PlacesFormPage = () => {
             checkIn,
             checkOut,
             maxGuests,
-            price
+            price,
         }
         if (id) {
-            await axios.put('/places', {id, ...placeData})
+            await axios.put('/places', { id, ...placeData })
             setRedirect(true)
         } else {
             await axios.post('/places', placeData)
@@ -82,12 +84,12 @@ const PlacesFormPage = () => {
     }
 
     if (redirect) {
-        return <Navigate to={'/account/places'}/>
+        return <Navigate to={'/account/places'} />
     }
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <AccountNav/>
+            <AccountNav />
             <form className="w-10/12" onSubmit={savePlace}>
                 {preInput(
                     'Title',
@@ -118,7 +120,7 @@ const PlacesFormPage = () => {
                 />
                 {preInput('Perks', 'select all the perks of your place')}
                 <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-                    <Perks selected={perks} onChange={setPerks}/>
+                    <Perks selected={perks} onChange={setPerks} />
                 </div>
                 {preInput('Extra info', 'house rules, etc')}
                 <textarea
